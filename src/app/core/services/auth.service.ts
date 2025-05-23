@@ -1,6 +1,6 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { enviroment as env } from '~envs/enviroment';
+import { environment as env } from '~envs/enviroment';
 import {
     HttpService,
     LocalStorageService,
@@ -41,11 +41,24 @@ export class AuthService extends HttpService {
     public readonly user = computed(() => this._user());
 
     constructor(
+        // private sessionStorageSvc: SessionStorageService,
         private router: Router,
-        // private localStorageSvc: LocalStorageService,
-        private sessionStorageSvc: SessionStorageService,
+        private localStorageSvc: LocalStorageService,
     ) {
         super();
+        const token = this.getToken();
+        if (token) {
+            const decoded = this.decodeToken(token);
+            if (decoded) {
+                this._user.set({
+                    token,
+                    refreshToken: '', // si no lo tienes guardado, pon ''
+                    usuarioId: Number(decoded?.unique_name),
+                    nombreUsuario: decoded?.given_name,
+                    expiration: new Date(decoded.exp * 1000),
+                });
+            }
+        }
     }
 
     login(email: string, password: string): Observable<LoginResponse> {
@@ -57,6 +70,7 @@ export class AuthService extends HttpService {
             this.#apiUrl,
             endpoints.AUTH.LOGIN,
             loginRequest,
+            { headers: { 'x-skip-auth': 'true' } },
         ).pipe(
             tap((response) => {
                 if (!response.isSuccess) {
@@ -69,24 +83,40 @@ export class AuthService extends HttpService {
     }
 
     saveToken(token: string) {
-        this.sessionStorageSvc.setItem(this.tokenKey, token);
+        this.localStorageSvc.setItem(this.tokenKey, token);
     }
 
     getToken(): string | null {
-        return this.sessionStorageSvc.getItem(this.tokenKey);
+        return this.localStorageSvc.getItem(this.tokenKey);
     }
 
     logout() {
-        this.sessionStorageSvc.removeItem(this.tokenKey);
+        this.localStorageSvc.removeItem(this.tokenKey);
         this._user.set(null);
         this.router.navigate(['/login']);
     }
 
     isLoggedIn(): boolean {
-        return !!this.getToken();
+        const token = this.getToken();
+        if (!token) return false;
+
+        const user = this.user();
+        if (!user || !user.expiration) return false;
+
+        return new Date(user.expiration) > new Date(); // aún válido
     }
 
     setUserData(user: DataLogin) {
         this._user.set(user);
+    }
+
+    private decodeToken(token: string): any {
+        try {
+            const payload = token.split('.')[1];
+            return JSON.parse(atob(payload));
+        } catch (e) {
+            console.error('Token inválido');
+            return null;
+        }
     }
 }

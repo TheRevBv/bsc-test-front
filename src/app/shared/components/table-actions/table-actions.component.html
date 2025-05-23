@@ -1,0 +1,11 @@
+<div class="flex gap-2 justify-center">
+    <p-button
+        *ngFor="let action of actions"
+        [icon]="action.icon"
+        [severity]="action.severity || severity"
+        [outlined]="true"
+        [rounded]="true"
+        [title]="action.tooltip"
+        (click)="action.action(row)"
+    />
+</div>

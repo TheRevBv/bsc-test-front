@@ -1,4 +1,4 @@
-export const enviroment = {
+export const environment = {
     production: false,
     api: 'http://localhost:5000/api/',
     appName: 'BSC - Sistema de Gestión',

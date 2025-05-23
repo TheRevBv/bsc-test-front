@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 
-import { Product, ProductService } from '../service/product.service';
 import { PrimeModule } from '~/shared';
+import { Product, ProductService } from '~/pages/service/product.service';
 
 interface Column {
     field: string;

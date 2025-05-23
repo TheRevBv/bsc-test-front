@@ -65,7 +65,7 @@ export class AppMenu {
                     {
                         label: 'Crud',
                         icon: 'pi pi-fw pi-pencil',
-                        routerLink: ['/modules/crud'],
+                        routerLink: ['/pages/crud'],
                     },
                     {
                         label: 'Inventario',

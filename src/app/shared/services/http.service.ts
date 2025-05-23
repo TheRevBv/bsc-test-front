@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, Signal, computed, inject } from '@angular/core';
 import { throwError, delay, map, catchError, Observable } from 'rxjs';
 import { AlertService, IBaseResponse, IHttpService } from '~/shared';
-import { enviroment as env } from '~envs/enviroment';
+import { environment as env } from '~envs/enviroment';
 
 @Injectable({
     providedIn: 'root',
