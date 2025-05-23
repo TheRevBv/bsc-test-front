@@ -11,7 +11,7 @@
         <a class="layout-topbar-logo" routerLink="/">
             <svg
                 width="100"
-                height="100"
+                height="50"
                 viewBox="0 0 100 100"
                 xmlns="http://www.w3.org/2000/svg"
             >
@@ -42,39 +42,10 @@
     </div>
 
     <div class="layout-topbar-actions">
-        <!-- <div class="layout-config-menu">
-                <button
-                    type="button"
-                    class="layout-topbar-action"
-                    (click)="toggleDarkMode()"
-                >
-                    <i
-                        [ngClass]="{
-                            'pi ': true,
-                            'pi-moon': layoutService.isDarkTheme(),
-                            'pi-sun': !layoutService.isDarkTheme()
-                        }"
-                    ></i>
-                </button>
-                <div class="relative">
-                    <button
-                        class="layout-topbar-action layout-topbar-action-highlight"
-                        pStyleClass="@next"
-                        enterFromClass="hidden"
-                        enterActiveClass="animate-scalein"
-                        leaveToClass="hidden"
-                        leaveActiveClass="animate-fadeout"
-                        [hideOnOutsideClick]="true"
-                    >
-                        <i class="pi pi-palette"></i>
-                    </button>
-                    <app-configurator />
-                </div>
-            </div> -->
-
         <p-menu #menu [model]="userItems" [popup]="true"></p-menu>
 
-        <!-- <button
+        <button
+            *ngIf="showMobileMenu"
             class="layout-topbar-menu-button layout-topbar-action"
             pStyleClass="@next"
             enterFromClass="hidden"
@@ -84,9 +55,9 @@
             [hideOnOutsideClick]="true"
         >
             <i class="pi pi-ellipsis-v"></i>
-        </button> -->
+        </button>
 
-        <div class="layout-topbar-menu hidden lg:block">
+        <div class="w-full hidden lg:block">
             <div class="layout-topbar-menu-content">
                 <button type="button" class="layout-topbar-action">
                     <i class="pi pi-calendar"></i>
@@ -98,7 +69,7 @@
                 </button>
                 <button
                     type="button"
-                    class="layout-topbar-action"
+                    class="w-full"
                     (click)="menu.toggle($event)"
                 >
                     <i class="pi pi-user"></i>

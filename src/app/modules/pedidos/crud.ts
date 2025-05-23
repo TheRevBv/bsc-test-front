@@ -105,11 +105,6 @@ export class Crud implements OnInit {
         this.productDialog = true;
     }
 
-    viewProduct(product: Product) {
-        this.product = { ...product };
-        this.productDialog = true;
-    }
-
     deleteSelectedProducts() {
         this.confirmationService.confirm({
             message: 'Are you sure you want to delete the selected products?',
