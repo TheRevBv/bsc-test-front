@@ -74,16 +74,7 @@
 
         <p-menu #menu [model]="userItems" [popup]="true"></p-menu>
 
-        <button
-            type="button"
-            class="layout-topbar-action"
-            (click)="menu.toggle($event)"
-        >
-            <i class="pi pi-user"></i>
-            <span class="ml-2 hidden lg:inline">{{ userName }}</span>
-        </button>
-
-        <button
+        <!-- <button
             class="layout-topbar-menu-button layout-topbar-action"
             pStyleClass="@next"
             enterFromClass="hidden"
@@ -93,7 +84,7 @@
             [hideOnOutsideClick]="true"
         >
             <i class="pi pi-ellipsis-v"></i>
-        </button>
+        </button> -->
 
         <div class="layout-topbar-menu hidden lg:block">
             <div class="layout-topbar-menu-content">
@@ -105,9 +96,13 @@
                     <i class="pi pi-inbox"></i>
                     <span>Messages</span>
                 </button>
-                <button type="button" class="layout-topbar-action">
+                <button
+                    type="button"
+                    class="layout-topbar-action"
+                    (click)="menu.toggle($event)"
+                >
                     <i class="pi pi-user"></i>
-                    <span>Profile</span>
+                    <span class="ml-2 hidden lg:inline">{{ userName }}</span>
                 </button>
             </div>
         </div>

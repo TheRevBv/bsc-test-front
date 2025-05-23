@@ -25,6 +25,8 @@ export class TopbarComponent {
     userName = 'Joshua Salazar';
     userRole = 'Administrador';
 
+    showMobileMenu = false;
+
     constructor(
         public layoutService: LayoutService,
         private authSvc: AuthService,
@@ -61,5 +63,9 @@ export class TopbarComponent {
             ...state,
             darkTheme: !state.darkTheme,
         }));
+    }
+
+    toggleMobileActions() {
+        this.showMobileMenu = !this.showMobileMenu;
     }
 }
