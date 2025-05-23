@@ -29,6 +29,7 @@
 
     <ng-template pTemplate="header">
         <tr>
+            <th *ngIf="config.actions?.length"></th>
             <th
                 *ngFor="let col of config.columns"
                 [pSortableColumn]="col.sortable ? col.field : undefined"
@@ -36,17 +37,26 @@
                 {{ col.header }}
                 <p-sortIcon *ngIf="col.sortable" [field]="col.field" />
             </th>
-            <th *ngIf="config.actions?.length"></th>
         </tr>
     </ng-template>
 
     <ng-template pTemplate="body" let-row>
         <tr>
-            <td *ngFor="let col of config.columns">
-                {{ row[col.field] }}
-            </td>
             <td *ngIf="config.actions?.length">
                 <bsc-table-actions [row]="row" [actions]="config.actions!" />
+            </td>
+            <td *ngFor="let col of config.columns">
+                <ng-container *ngIf="col.badge; else plain">
+                    <ng-template [bscStatusBadge]="row[col.field]" let-badge>
+                        <span
+                            class="px-2 py-1 text-xs font-semibold rounded-full"
+                            [ngClass]="badge.class"
+                        >
+                            {{ badge.text }}
+                        </span>
+                    </ng-template>
+                </ng-container>
+                <ng-template #plain>{{ row[col.field] }}</ng-template>
             </td>
         </tr>
     </ng-template>

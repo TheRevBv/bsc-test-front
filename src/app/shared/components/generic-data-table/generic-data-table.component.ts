@@ -12,6 +12,7 @@ import { ITableConfig, PrimeModule } from '~/shared';
 import { TableToolbarComponent } from '../table-toolbar/table-toolbar.component';
 import { ButtonSeverity } from 'primeng/button';
 import { TableActionsComponent } from '../table-actions/table-actions.component';
+import { StatusBadgeDirective } from '~/shared/directive/status-badge.directive';
 
 @Component({
     selector: 'bsc-generic-data-table',
@@ -19,6 +20,7 @@ import { TableActionsComponent } from '../table-actions/table-actions.component'
     imports: [
         PrimeModule,
         CommonModule,
+        StatusBadgeDirective,
         TableToolbarComponent,
         TableActionsComponent,
     ],

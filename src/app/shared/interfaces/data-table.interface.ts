@@ -7,6 +7,7 @@ export interface TableColumn {
     customTemplate?: string;
     width?: string;
     height?: string;
+    badge?: boolean;
 }
 
 export interface TableAction {

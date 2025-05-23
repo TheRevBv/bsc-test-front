@@ -41,6 +41,7 @@ export const productoTableConfig: ITableConfig = {
             header: 'Estatus',
             sortable: false,
             width: '120px',
+            badge: true,
         },
     ],
     actions: [
