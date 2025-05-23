@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
-import { AppFloatingConfigurator } from '../../layout/component/app.floatingconfigurator';
+import { AppFloatingConfigurator } from '~/core/layout/component/app.floatingconfigurator';
+import { PrimeModule } from '~/shared';
 
 @Component({
     selector: 'app-notfound',
     standalone: true,
-    imports: [RouterModule, AppFloatingConfigurator, ButtonModule],
+    imports: [RouterModule, AppFloatingConfigurator, PrimeModule],
     template: ` <app-floating-configurator />
         <div class="flex items-center justify-center min-h-screen overflow-hidden">
             <div class="flex flex-col items-center justify-center">
@@ -63,6 +63,6 @@ import { AppFloatingConfigurator } from '../../layout/component/app.floatingconf
                     </div>
                 </div>
             </div>
-        </div>`
+        </div>`,
 })
 export class Notfound {}

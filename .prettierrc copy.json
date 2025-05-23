@@ -1,0 +1,37 @@
+{
+    "useTabs": false,
+    "tabWidth": 4,
+    "semi": true,
+    "bracketSameLine": false,
+    "overrides": [
+        {
+            "files": [
+                "*.ts",
+                "*.mts",
+                "*.d.ts"
+            ],
+            "options": {
+                "parser": "typescript"
+            }
+        },
+        {
+            "files": [
+                "*.html"
+            ],
+            "options": {
+                "parser": "html"
+            }
+        },
+        {
+            "files": [
+                "*.component.html"
+            ],
+            "options": {
+                "parser": "angular"
+            }
+        }
+    ],
+    "singleQuote": true,
+    "trailingComma": "all",
+    "endOfLine": "auto"
+}
