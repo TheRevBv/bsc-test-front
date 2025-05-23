@@ -9,6 +9,7 @@ import {
     Validators,
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { MessageService } from 'primeng/api';
 import { AppFloatingConfigurator } from '~/core/layout/component/app.floatingconfigurator';
 import { AuthService } from '~/core/services/auth.service';
 import { PrimeModule } from '~/shared';
@@ -25,6 +26,7 @@ import { validatePassword } from '~/utils';
     ],
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
+    providers: [MessageService],
 })
 export default class LoginComponent {
     loginForm!: FormGroup;
@@ -34,6 +36,7 @@ export default class LoginComponent {
         private authSvc: AuthService,
         private fb: FormBuilder,
         private router: Router,
+        private messageSvc: MessageService,
     ) {
         this.buildForm();
     }
@@ -68,6 +71,11 @@ export default class LoginComponent {
     login() {
         if (this.loginForm.invalid) {
             this.loginForm.markAllAsTouched(); // Marcar todos los campos como tocados para mostrar errores
+            this.messageSvc.add({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'Por favor, completa todos los campos correctamente.',
+            });
             return;
         }
         const { correo, contrasena } = this.loginForm.value;
@@ -78,7 +86,14 @@ export default class LoginComponent {
                     console.log(res.message);
                     // Aquí podrías mostrar un mensaje de error visual, por ejemplo, con un p-message de PrimeNG
                 }
-                this.router.navigate(['/']);
+                this.messageSvc.add({
+                    severity: 'success',
+                    summary: 'Éxito',
+                    detail: 'Inicio de sesión exitoso',
+                });
+                setTimeout(() => {
+                    this.router.navigate(['/']);
+                }, 1000);
             },
             error: (err) => {
                 // Mostrar error visual, por ejemplo, con p-message

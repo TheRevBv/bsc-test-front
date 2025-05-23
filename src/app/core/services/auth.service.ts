@@ -1,7 +1,11 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { enviroment as env } from '~envs/enviroment';
-import { HttpService, LocalStorageService } from '~/shared';
+import {
+    HttpService,
+    LocalStorageService,
+    SessionStorageService,
+} from '~/shared';
 import { Observable, tap } from 'rxjs';
 import { endpoints } from '~/utils';
 
@@ -39,7 +43,7 @@ export class AuthService extends HttpService {
     constructor(
         private router: Router,
         // private localStorageSvc: LocalStorageService,
-        private sessionStorageSvc: LocalStorageService,
+        private sessionStorageSvc: SessionStorageService,
     ) {
         super();
     }

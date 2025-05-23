@@ -3,6 +3,7 @@ import { Dashboard } from './app/pages/dashboard/dashboard';
 import { Notfound } from './app/pages/notfound/notfound';
 import { AppLayout } from '~/core/layout/component/app.layout';
 import { authGuard } from '~/core/guards/auth.guard';
+import { nonAuthGuard } from '~/core/guards/non-auth.guard';
 
 export const appRoutes: Routes = [
     {
@@ -23,6 +24,7 @@ export const appRoutes: Routes = [
     { path: 'notfound', component: Notfound },
     {
         path: 'auth',
+        canActivate: [nonAuthGuard],
         loadChildren: () => import('~/modules/auth/auth.routes'),
     },
     { path: '**', redirectTo: '/auth' },

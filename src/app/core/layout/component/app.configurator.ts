@@ -317,7 +317,7 @@ export class AppConfigurator {
                 >
             ].primitive;
         const colors = [
-            'emerald',
+            'blue',
             'green',
             'lime',
             'orange',
@@ -326,7 +326,7 @@ export class AppConfigurator {
             'teal',
             'cyan',
             'sky',
-            'blue',
+            'esmerald',
             'indigo',
             'violet',
             'purple',
@@ -353,6 +353,7 @@ export class AppConfigurator {
             this.primaryColors().find(
                 (c) => c.name === this.selectedPrimaryColor(),
             ) || {};
+        console.log(color);
         const preset = this.layoutService.layoutConfig().preset;
 
         if (color.name === 'noir') {
@@ -484,6 +485,7 @@ export class AppConfigurator {
 
     updateColors(event: any, type: string, color: any) {
         if (type === 'primary') {
+            console.log(color);
             this.layoutService.layoutConfig.update((state) => ({
                 ...state,
                 primary: color.name,
