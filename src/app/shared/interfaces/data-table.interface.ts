@@ -4,6 +4,7 @@ export interface TableColumn {
     field: string;
     header: string;
     sortable?: boolean;
+    format?: (row: any) => string;
     customTemplate?: string;
     width?: string;
     height?: string;

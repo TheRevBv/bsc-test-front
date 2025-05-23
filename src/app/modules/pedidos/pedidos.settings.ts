@@ -33,8 +33,13 @@ export function getTableConfig(
             {
                 field: 'productos',
                 header: 'Resumen',
-
-                // isTemplate: true, // si usas plantilla en el `GenericDataTableComponent`
+                format(row: any): string {
+                    let summary = '';
+                    for (const producto of row.productos) {
+                        summary += `${producto.productoNombre} (${producto.cantidad}),`;
+                    }
+                    return summary;
+                },
             },
         ],
         actions: [

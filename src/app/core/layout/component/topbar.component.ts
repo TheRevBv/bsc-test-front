@@ -33,6 +33,8 @@ export class TopbarComponent {
         private router: Router,
         private confirmSvc: ConfirmService,
     ) {
+        this.userName = this.authSvc.user()?.nombreUsuario ?? '';
+        this.userRole = this.authSvc.user()?.rol ?? '';
         this.userItems = [
             {
                 label: `👤 ${this.userName}`,

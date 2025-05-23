@@ -22,6 +22,7 @@ export interface DataLogin {
     usuarioId: number;
     nombreUsuario: string;
     expiration: Date;
+    rol?: string; // si tienes un rol, puedes agregarlo aquí
 }
 export class LogiRequest implements ILoginRequest {
     correo!: string;
@@ -31,6 +32,20 @@ export class LogiRequest implements ILoginRequest {
 export interface ILoginRequest {
     correo: string;
     contrasena: string;
+}
+
+export interface IDecodedToken {
+    nameid: string;
+    family_name: string;
+    given_name: string;
+    unique_name: string;
+    jti: string;
+    role: string;
+    iat: number;
+    nbf: number;
+    exp: number;
+    iss: string;
+    aud: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -54,8 +69,9 @@ export class AuthService extends HttpService {
                     token,
                     refreshToken: '', // si no lo tienes guardado, pon ''
                     usuarioId: Number(decoded?.unique_name),
-                    nombreUsuario: decoded?.given_name,
+                    nombreUsuario: decoded?.family_name,
                     expiration: new Date(decoded.exp * 1000),
+                    rol: decoded?.role,
                 });
             }
         }
@@ -77,7 +93,7 @@ export class AuthService extends HttpService {
                     throw new Error(response.message);
                 }
                 this.saveToken(response.data.token);
-                this.setUserData(response.data);
+                // this.setUserData(response.data);
             }),
         );
     }
@@ -110,7 +126,7 @@ export class AuthService extends HttpService {
         this._user.set(user);
     }
 
-    private decodeToken(token: string): any {
+    private decodeToken(token: string): IDecodedToken | null {
         try {
             const payload = token.split('.')[1];
             return JSON.parse(atob(payload));
