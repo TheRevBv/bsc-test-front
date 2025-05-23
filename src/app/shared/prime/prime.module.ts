@@ -12,6 +12,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
+import { MenuModule } from 'primeng/menu';
 import { PanelModule } from 'primeng/panel';
 import { PasswordModule } from 'primeng/password';
 import { RadioButtonModule } from 'primeng/radiobutton';
@@ -41,6 +42,7 @@ import { TooltipModule } from 'primeng/tooltip';
         InputIconModule,
         InputNumberModule,
         InputTextModule,
+        MenuModule,
         PanelModule,
         PasswordModule,
         RadioButtonModule,
@@ -69,6 +71,7 @@ import { TooltipModule } from 'primeng/tooltip';
         InputIconModule,
         InputNumberModule,
         InputTextModule,
+        MenuModule,
         PanelModule,
         PasswordModule,
         RadioButtonModule,

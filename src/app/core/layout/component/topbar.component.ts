@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { MenuItem } from 'primeng/api';
-import { RouterModule } from '@angular/router';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AppConfigurator } from './app.configurator';
 import { LayoutService } from '../service/layout.service';
-import { PrimeModule } from '~/shared';
+import { ConfirmService, PrimeModule } from '~/shared';
+import { AuthService } from '~/core/services/auth.service';
 
 @Component({
     selector: 'app-topbar',
@@ -16,11 +17,44 @@ import { PrimeModule } from '~/shared';
         // AppConfigurator
     ],
     templateUrl: './topbar.component.html',
+    styleUrls: ['./topbar.component.scss'],
+    providers: [ConfirmService, ConfirmationService, MessageService],
 })
-export class AppTopbar {
-    items!: MenuItem[];
+export class TopbarComponent {
+    userItems: MenuItem[] = [];
+    userName = 'Joshua Salazar';
+    userRole = 'Administrador';
 
-    constructor(public layoutService: LayoutService) {}
+    constructor(
+        public layoutService: LayoutService,
+        private authSvc: AuthService,
+        private router: Router,
+        private confirmSvc: ConfirmService,
+    ) {
+        this.userItems = [
+            {
+                label: `👤 ${this.userName}`,
+                disabled: true,
+            },
+            {
+                label: `🔐 Rol: ${this.userRole}`,
+                disabled: true,
+            },
+            { separator: true },
+            {
+                label: 'Cerrar sesión',
+                icon: 'pi pi-sign-out',
+                command: () => this.logout(),
+            },
+        ];
+    }
+
+    logout() {
+        // Aquí va tu lógica real para cerrar sesión
+        this.confirmSvc.showConfirm('¿Estás seguro de cerrar sesión?', () => {
+            this.authSvc.logout();
+        });
+    }
 
     toggleDarkMode() {
         this.layoutService.layoutConfig.update((state) => ({

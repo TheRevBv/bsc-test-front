@@ -1,4 +1,6 @@
 <div class="layout-topbar">
+    <p-toast />
+    <p-confirmdialog />
     <div class="layout-topbar-logo-container">
         <button
             class="layout-menu-button layout-topbar-action"
@@ -69,6 +71,17 @@
                     <app-configurator />
                 </div>
             </div> -->
+
+        <p-menu #menu [model]="userItems" [popup]="true"></p-menu>
+
+        <button
+            type="button"
+            class="layout-topbar-action"
+            (click)="menu.toggle($event)"
+        >
+            <i class="pi pi-user"></i>
+            <span class="ml-2 hidden lg:inline">{{ userName }}</span>
+        </button>
 
         <button
             class="layout-topbar-menu-button layout-topbar-action"
