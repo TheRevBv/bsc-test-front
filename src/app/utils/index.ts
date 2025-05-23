@@ -8,3 +8,4 @@ export * from './functions/convertToBase64';
 export * from './functions/validateParamsQuery';
 export * from './functions/edad-validator';
 export * from './functions/curp-regex';
+export * from './functions/password-regex';
