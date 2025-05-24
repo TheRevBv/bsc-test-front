@@ -1,0 +1,7 @@
+<bsc-generic-data-table
+    [data]="usuarios()"
+    [config]="tableConfig"
+    (pageChange)="handlePageChange($event)"
+    (create)="onActionClicked('add', null)"
+    (refresh)="loadUsuarios()"
+/>

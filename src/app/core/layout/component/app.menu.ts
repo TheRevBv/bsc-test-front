@@ -48,7 +48,7 @@ export class AppMenu {
                             {
                                 label: 'Usuarios',
                                 icon: 'pi pi-fw pi-users',
-                                routerLink: ['/modules/usuarios'],
+                                routerLink: ['/modules/admin/usuarios'],
                             },
                             {
                                 label: 'Roles',

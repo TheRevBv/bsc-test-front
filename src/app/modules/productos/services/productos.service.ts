@@ -1,4 +1,3 @@
-// services/productos.service.ts
 import { Injectable } from '@angular/core';
 import { BaseService } from '~/shared';
 import { Producto } from '../models/producto.model';

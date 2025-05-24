@@ -15,6 +15,7 @@ export const endpoints = {
         UPDATE_USERS: 'usuarios/',
         DELETE_USERS: 'usuarios/',
         LIST_OFICINAS_BY_USER: 'usuarios/:id/oficinas',
+        ASIGNAR_ROL: 'usuarios/asignar-roles/:id',
     },
     ARCHIVOS: {
         GET_BASE64_BY_ID: 'archivos/',

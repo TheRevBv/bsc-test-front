@@ -1,0 +1,39 @@
+<p-toast />
+<div [formGroup]="form" class="space-y-4 p-3 min-w-[300px] sm:min-w-[400px]">
+    <h3 class="text-lg font-semibold">{{ titulo }}</h3>
+
+    <div class="field">
+        <label>Usuario</label>
+        <input pInputText formControlName="nombreUsuario" />
+        <bsc-form-error control="nombreUsuario" [form]="form" />
+    </div>
+
+    <div class="field">
+        <label>Correo</label>
+        <input pInputText formControlName="correo" />
+        <bsc-form-error control="correo" [form]="form" />
+    </div>
+
+    <ng-container *ngIf="action === 'agregar'">
+        <div class="field">
+            <label>Contraseña</label>
+            <input pInputText formControlName="contrasena" type="password" />
+            <bsc-form-error control="contrasena" [form]="form" />
+        </div>
+    </ng-container>
+
+    <div class="field">
+        <label>Imagen (opcional)</label>
+        <input pInputText formControlName="imagen" />
+    </div>
+
+    <div class="flex justify-end gap-3 pt-4">
+        <p-button
+            label="Cancelar"
+            icon="pi pi-times"
+            (onClick)="cerrar()"
+            text
+        />
+        <p-button label="Guardar" icon="pi pi-check" (onClick)="guardar()" />
+    </div>
+</div>
