@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { ChartModule } from 'primeng/chart';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DatePickerModule } from 'primeng/datepicker';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { FieldsetModule } from 'primeng/fieldset';
@@ -36,6 +37,7 @@ import { TooltipModule } from 'primeng/tooltip';
         ChartModule,
         CheckboxModule,
         ConfirmDialogModule,
+        DatePickerModule,
         DialogModule,
         DropdownModule,
         FieldsetModule,
@@ -66,6 +68,7 @@ import { TooltipModule } from 'primeng/tooltip';
         ChartModule,
         CheckboxModule,
         ConfirmDialogModule,
+        DatePickerModule,
         DialogModule,
         DropdownModule,
         FieldsetModule,

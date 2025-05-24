@@ -9,5 +9,9 @@ export default [
         path: 'admin',
         loadChildren: () => import('./usuarios/usuarios.routes'),
     },
+    {
+        path: 'ventas',
+        loadChildren: () => import('./pedidos/pedidos.routes'),
+    },
     { path: '**', redirectTo: '/notfound' },
 ] as Routes;

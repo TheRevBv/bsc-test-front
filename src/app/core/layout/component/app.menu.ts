@@ -63,11 +63,6 @@ export class AppMenu {
                         ],
                     },
                     {
-                        label: 'Crud',
-                        icon: 'pi pi-fw pi-pencil',
-                        routerLink: ['/pages/crud'],
-                    },
-                    {
                         label: 'Inventario',
                         icon: 'pi pi-fw pi-box',
                         items: [

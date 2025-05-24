@@ -1,0 +1,7 @@
+<bsc-generic-data-table
+    [data]="pedidos()"
+    [config]="tableConfig"
+    (pageChange)="handlePageChange($event)"
+    (create)="onActionClicked($event, null)"
+    (refresh)="loadPedidos()"
+/>
