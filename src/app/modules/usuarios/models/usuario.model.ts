@@ -4,4 +4,5 @@ export interface Usuario {
     correo: string;
     imagen?: string;
     estado: number;
+    rolId?: number;
 }

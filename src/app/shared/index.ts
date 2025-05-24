@@ -7,6 +7,7 @@ export * from './interfaces/base-reponse-all.interface';
 export * from './interfaces/http.interface';
 export * from './interfaces/base-request';
 export * from './interfaces/data-table.interface';
+export * from './interfaces/base-select-response.interface';
 
 //Services
 export * from './services/local-storage.service';

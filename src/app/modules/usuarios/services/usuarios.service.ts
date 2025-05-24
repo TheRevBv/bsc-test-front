@@ -18,7 +18,7 @@ export class UsuariosService extends BaseService<Usuario> {
         roles: number[],
     ): Observable<IBaseResponse<boolean>> {
         return this.http.put<IBaseResponse<boolean>>(
-            `${this.#apiUrl}/${endpoints.USUARIOS.ASIGNAR_ROL.replace(
+            `${this.#apiUrl}${endpoints.USUARIOS.ASIGNAR_ROL.replace(
                 ':id',
                 usuarioId,
             )}`,

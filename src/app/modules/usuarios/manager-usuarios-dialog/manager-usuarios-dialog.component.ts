@@ -17,6 +17,7 @@ import { UsuariosService } from '../services/usuarios.service';
 import { Usuario } from '../models/usuario.model';
 import { FormErrorComponent } from '~/shared/components/form-error/form-error.component';
 import { passwordRegex } from '~/utils';
+import { FieldSelectComponent } from '~/shared/components/field-select/field-select.component';
 
 @Component({
     selector: 'bsc-manager-usuarios-dialog',
@@ -28,6 +29,7 @@ import { passwordRegex } from '~/utils';
         ReactiveFormsModule,
         PrimeModule,
         FormErrorComponent,
+        FieldSelectComponent,
     ],
     providers: [MessageService],
 })
@@ -42,10 +44,8 @@ export class ManagerUsuariosDialogComponent implements OnInit {
     action: 'agregar' | 'editar' = 'agregar';
     usuario?: Usuario;
 
-    ngOnInit(): void {
+    constructor() {
         this.action = this.config.data?.action;
-        this.usuario = this.config.data?.usuario;
-
         this.form = this.fb.group({
             nombreUsuario: ['', [Validators.required, Validators.minLength(3)]],
             correo: ['', [Validators.required, Validators.email]],
@@ -56,15 +56,16 @@ export class ManagerUsuariosDialogComponent implements OnInit {
                     [Validators.required, Validators.pattern(passwordRegex)],
                 ],
             }),
+            rolId: ['', [Validators.required]],
         });
-
-        if (this.usuario) {
-            this.form.patchValue(this.usuario);
-        }
     }
 
     get titulo(): string {
         return this.action === 'editar' ? 'Editar Usuario' : 'Agregar Usuario';
+    }
+
+    ngOnInit(): void {
+        this.loadUsuario();
     }
 
     cerrar(): void {
@@ -72,6 +73,9 @@ export class ManagerUsuariosDialogComponent implements OnInit {
     }
 
     guardar(): void {
+        console.log('form values', this.form.getRawValue());
+        //mostrar en consola que campos no son validos
+        console.log('form', this.form);
         if (this.form.invalid) {
             this.form.markAllAsTouched();
             this.messageSvc.add({
@@ -83,27 +87,67 @@ export class ManagerUsuariosDialogComponent implements OnInit {
         }
 
         const dto = this.form.getRawValue();
+        const dtoRolId = dto.rolId;
+        delete dto.rolId;
 
         if (this.action === 'editar') {
             this.usuarioSvc
-                .update(this.usuario!.usuarioId?.toString()!, dto)
+                .update(this.usuario!.usuarioId!.toString(), dto)
                 .subscribe(() => {
-                    this.messageSvc.add({
-                        severity: 'success',
-                        summary: 'Actualizado',
-                        detail: 'El usuario fue actualizado correctamente',
-                    });
-                    this.ref.close('refresh');
+                    this.asignarRol(
+                        this.usuario!.usuarioId!.toString(),
+                        dtoRolId,
+                    );
                 });
         } else {
-            this.usuarioSvc.create(dto).subscribe(() => {
+            this.usuarioSvc.create(dto).subscribe((res) => {
+                if (!res.isSuccess || !res.data) {
+                    this.messageSvc.add({
+                        severity: 'error',
+                        summary: 'Error',
+                        detail: res.message?.toString(),
+                    });
+                    return;
+                }
                 this.messageSvc.add({
                     severity: 'success',
-                    summary: 'Creado',
-                    detail: 'El usuario fue registrado correctamente',
+                    summary: 'Éxito',
+                    detail: 'Usuario creado correctamente',
                 });
-                this.ref.close('refresh');
+                const data = res.data as any;
+                const nuevoId = res.data?.usuarioId ?? data?.id; // según tu backend
+                if (nuevoId) {
+                    this.asignarRol(nuevoId.toString(), dto.rolId);
+                }
             });
         }
+    }
+
+    private asignarRol(usuarioId: string, rolId: number): void {
+        this.usuarioSvc.asignarRol(usuarioId, [rolId]).subscribe(() => {
+            this.messageSvc.add({
+                severity: 'success',
+                summary: 'Éxito',
+                detail:
+                    this.action === 'editar'
+                        ? 'Usuario actualizado correctamente'
+                        : 'Usuario creado correctamente',
+            });
+            this.ref.close('refresh');
+        });
+    }
+
+    private loadUsuario(): void {
+        console.log('config', this.config);
+        this.usuarioSvc
+            .getById(this.config.data?.usuario.usuarioId!.toString())
+            .subscribe((res) => {
+                if (res.isSuccess && res.data) {
+                    this.usuario = res.data;
+                    if (this.usuario) {
+                        this.form.patchValue(this.usuario);
+                    }
+                }
+            });
     }
 }
