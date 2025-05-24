@@ -29,12 +29,14 @@ export const productoTableConfig: ITableConfig = {
             header: 'Precio',
             sortable: true,
             width: '120px',
+            currency: true,
         },
         {
             field: 'fechaAlta',
             header: 'Fecha Alta',
             sortable: true,
             width: '160px',
+            date: true,
         },
         {
             field: 'estatus',

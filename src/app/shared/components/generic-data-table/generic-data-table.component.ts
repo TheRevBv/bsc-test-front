@@ -13,6 +13,8 @@ import { TableToolbarComponent } from '../table-toolbar/table-toolbar.component'
 import { ButtonSeverity } from 'primeng/button';
 import { TableActionsComponent } from '../table-actions/table-actions.component';
 import { StatusBadgeDirective } from '~/shared/directive/status-badge.directive';
+import { CurrencyDirective } from '~/shared/directive/currency.directive';
+import { FormatDateDirective } from '~/shared/directive/format-date.directive';
 
 @Component({
     selector: 'bsc-generic-data-table',
@@ -20,6 +22,8 @@ import { StatusBadgeDirective } from '~/shared/directive/status-badge.directive'
     imports: [
         PrimeModule,
         CommonModule,
+        CurrencyDirective,
+        FormatDateDirective,
         StatusBadgeDirective,
         TableToolbarComponent,
         TableActionsComponent,

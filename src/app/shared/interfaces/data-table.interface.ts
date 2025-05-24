@@ -8,6 +8,8 @@ export interface TableColumn {
     width?: string;
     height?: string;
     badge?: boolean;
+    currency?: boolean;
+    date?: boolean;
 }
 
 export interface TableAction {

@@ -28,18 +28,18 @@ export class StatusBadgeDirective {
             case 1:
                 return {
                     text: 'Activo',
-                    class: 'bg-green-100 text-green-800',
+                    class: 'bg-green-100 text-green-800 px-2 py-1 rounded-lg',
                 };
             case 'Inactivo':
             case 0:
                 return {
                     text: 'Inactivo',
-                    class: 'bg-red-100 text-red-800',
+                    class: 'bg-red-100 text-red-800 px-2 py-1 rounded-lg',
                 };
             default:
                 return {
                     text: value,
-                    class: 'bg-gray-100 text-gray-800',
+                    class: 'bg-gray-100 text-gray-800 px-2 py-1 rounded-lg',
                 };
         }
     }

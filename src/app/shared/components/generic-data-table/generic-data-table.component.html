@@ -46,17 +46,31 @@
                 <bsc-table-actions [row]="row" [actions]="config.actions!" />
             </td>
             <td *ngFor="let col of config.columns">
-                <ng-container *ngIf="col.badge; else plain">
+                <ng-container *ngIf="col.badge; else otherCases">
                     <ng-template [bscStatusBadge]="row[col.field]" let-badge>
-                        <span
-                            class="px-2 py-1 text-xs font-semibold rounded-full"
-                            [ngClass]="badge.class"
-                        >
-                            {{ badge.text }}
-                        </span>
+                        <span [ngClass]="badge.class">{{ badge.text }}</span>
                     </ng-template>
                 </ng-container>
-                <ng-template #plain>{{ row[col.field] }}</ng-template>
+
+                <ng-template #otherCases>
+                    <ng-container *ngIf="col.currency; else maybeDate">
+                        <ng-template [bscCurrency]="row[col.field]" let-val>{{
+                            val
+                        }}</ng-template>
+                    </ng-container>
+
+                    <ng-template #maybeDate>
+                        <ng-container *ngIf="col.date; else plain">
+                            <ng-template
+                                [bscFormatDate]="row[col.field]"
+                                let-val
+                                >{{ val }}</ng-template
+                            >
+                        </ng-container>
+                    </ng-template>
+
+                    <ng-template #plain>{{ row[col.field] }}</ng-template>
+                </ng-template>
             </td>
         </tr>
     </ng-template>
