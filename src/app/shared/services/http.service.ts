@@ -67,12 +67,10 @@ export class HttpService implements IHttpService {
             headers = headers.set('x-skip-auth', 'true');
         }
 
-        return this.http
-            .patch<T>(`${apiUrl}${endpoint}`, body, { headers })
-            .pipe(
-                map((response) => response),
-                catchError((error) => this.handleError(apiUrl, error)),
-            );
+        return this.http.put<T>(`${apiUrl}${endpoint}`, body, { headers }).pipe(
+            map((response) => response),
+            catchError((error) => this.handleError(apiUrl, error)),
+        );
     }
 
     public delete<T>(

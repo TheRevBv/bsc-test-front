@@ -47,6 +47,8 @@ export class GenericDataTableComponent {
 
     @ViewChild('dt') dt!: Table;
 
+    @Output() refresh = new EventEmitter<void>();
+
     onLazyLoad(event: any) {
         this.pageChange.emit({
             page: event.first / event.rows + 1,
@@ -65,5 +67,9 @@ export class GenericDataTableComponent {
 
     exportCSV() {
         this.dt.exportCSV();
+    }
+
+    getData() {
+        this.refresh.emit();
     }
 }

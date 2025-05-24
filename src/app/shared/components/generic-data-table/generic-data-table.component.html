@@ -19,15 +19,23 @@
     <ng-template pTemplate="caption">
         <div class="flex justify-between items-center">
             <h5 class="m-0">{{ config.title }}</h5>
-            <p-iconfield>
-                <p-inputicon styleClass="pi pi-search" />
-                <input
-                    pInputText
-                    type="text"
-                    (input)="globalFilter($event)"
-                    placeholder="Buscar..."
+            <div class="flex gap-2">
+                <p-button
+                    icon="pi pi-refresh"
+                    pTooltip="Refrescar"
+                    tooltipPosition="bottom"
+                    (onClick)="getData()"
                 />
-            </p-iconfield>
+                <p-iconfield>
+                    <p-inputicon styleClass="pi pi-search" />
+                    <input
+                        pInputText
+                        type="text"
+                        (input)="globalFilter($event)"
+                        placeholder="Buscar..."
+                    />
+                </p-iconfield>
+            </div>
         </div>
     </ng-template>
 

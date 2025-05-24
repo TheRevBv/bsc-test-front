@@ -1,0 +1,76 @@
+<p-toast />
+<div
+    [formGroup]="form"
+    class="p-fluid space-y-4 min-w-[300px] sm:min-w-[400px]"
+>
+    <h3 class="text-lg font-semibold">{{ titulo }}</h3>
+
+    <div class="field">
+        <label>Clave</label>
+        <input
+            pInputText
+            formControlName="clave"
+            bscUppercase
+            maxlength="11"
+            [disabled]="modoLectura"
+        />
+        <bsc-form-error control="clave" [form]="form" />
+    </div>
+
+    <div class="field">
+        <label>Nombre</label>
+        <input
+            pInputText
+            formControlName="nombre"
+            maxlength="50"
+            [disabled]="modoLectura"
+        />
+        <bsc-form-error control="nombre" [form]="form" />
+    </div>
+
+    <div class="field">
+        <label>Existencia</label>
+        <p-inputNumber
+            formControlName="existencia"
+            [min]="0"
+            bscOnlyNumbers
+            [disabled]="modoLectura"
+        />
+        <bsc-form-error control="existencia" [form]="form" />
+    </div>
+
+    <div class="field">
+        <label>Precio</label>
+        <p-inputNumber
+            formControlName="precio"
+            mode="currency"
+            currency="MXN"
+            locale="es-MX"
+            [min]="0"
+            [disabled]="modoLectura"
+        />
+        <bsc-form-error control="precio" [form]="form" />
+    </div>
+    <div class="field">
+        <label>Estatus</label>
+        <!-- formControlName="estado" -->
+        <bsc-toggle-switch formControlName="estado" [disabled]="modoLectura" />
+
+        <bsc-form-error control="estado" [form]="form" />
+    </div>
+
+    <div class="flex justify-end gap-3 pt-4">
+        <p-button
+            label="Cancelar"
+            icon="pi pi-times"
+            (onClick)="cerrar()"
+            text
+        />
+        <p-button
+            label="Guardar"
+            icon="pi pi-check"
+            (onClick)="guardar()"
+            *ngIf="!modoLectura"
+        />
+    </div>
+</div>

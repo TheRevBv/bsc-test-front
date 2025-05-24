@@ -25,6 +25,7 @@ import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { TextareaModule } from 'primeng/textarea';
 import { ToastModule } from 'primeng/toast';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { ToolbarModule } from 'primeng/toolbar';
 import { TooltipModule } from 'primeng/tooltip';
 
@@ -55,6 +56,7 @@ import { TooltipModule } from 'primeng/tooltip';
         TagModule,
         TextareaModule,
         ToastModule,
+        ToggleSwitchModule,
         ToolbarModule,
         TooltipModule,
     ],
@@ -84,6 +86,7 @@ import { TooltipModule } from 'primeng/tooltip';
         TagModule,
         TextareaModule,
         ToastModule,
+        ToggleSwitchModule,
         ToolbarModule,
         TooltipModule,
     ],
