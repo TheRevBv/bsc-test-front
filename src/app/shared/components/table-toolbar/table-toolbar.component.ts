@@ -19,4 +19,5 @@ import { PrimeModule } from '~/shared/prime/prime.module';
 export class TableToolbarComponent {
     @Input() title = 'Items';
     @Output() export = new EventEmitter<void>();
+    @Output() add = new EventEmitter<string>();
 }

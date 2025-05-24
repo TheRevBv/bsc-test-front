@@ -43,6 +43,8 @@ export class GenericDataTableComponent {
         globalFilter?: string;
     }>();
 
+    @Output() create = new EventEmitter<string>();
+
     @ViewChild('dt') dt!: Table;
 
     onLazyLoad(event: any) {

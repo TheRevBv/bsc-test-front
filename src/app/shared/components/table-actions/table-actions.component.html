@@ -2,10 +2,10 @@
     <p-button
         *ngFor="let action of actions"
         [icon]="action.icon"
-        [severity]="action.severity || severity"
+        [severity]="action.severity || 'secondary'"
         [outlined]="true"
         [rounded]="true"
-        [title]="action.tooltip"
-        (click)="action.action(row)"
+        [pTooltip]="action.tooltip"
+        (click)="onAction(action)"
     />
 </div>

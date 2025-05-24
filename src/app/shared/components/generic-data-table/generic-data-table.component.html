@@ -1,4 +1,8 @@
-<bsc-table-toolbar [title]="config.title || 'Lista'" (export)="exportCSV()" />
+<bsc-table-toolbar
+    [title]="config.title || 'Lista'"
+    (export)="exportCSV()"
+    (add)="create.emit('add')"
+/>
 
 <p-table
     #dt

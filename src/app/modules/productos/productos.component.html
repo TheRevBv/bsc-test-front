@@ -1,5 +1,6 @@
 <bsc-generic-data-table
-  [data]="productos()"
-  [config]="tableConfig"
-  (pageChange)="handlePageChange($event)"
+    [data]="productos()"
+    [config]="tableConfig"
+    (pageChange)="handlePageChange($event)"
+    (create)="onActionClicked($event, null)"
 />

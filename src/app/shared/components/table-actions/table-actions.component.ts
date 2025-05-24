@@ -15,4 +15,12 @@ export class TableActionsComponent {
     severity: ButtonSeverity = 'secondary';
     @Input() row: any;
     @Input() actions: TableAction[] = [];
+
+    onAction(action: TableAction) {
+        if (action.clicked && action.actionKey) {
+            action.clicked(action.actionKey, this.row);
+        } else if (action.action) {
+            action.action(this.row);
+        }
+    }
 }

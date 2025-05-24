@@ -15,8 +15,10 @@ export interface TableColumn {
 export interface TableAction {
     icon: string;
     tooltip: string;
-    action: (row: any) => void;
     severity?: ButtonSeverity;
+    action?: (row: any) => void;
+    clicked?: (action: string, row: any) => void;
+    actionKey?: string; // ej: 'edit', 'delete'
 }
 
 export interface ITableConfig {
