@@ -93,7 +93,19 @@ export class AuthService extends HttpService {
                     throw new Error(response.message);
                 }
                 this.saveToken(response.data.token);
-                // this.setUserData(response.data);
+
+                // Decodifica el token y setea el usuario
+                const decoded = this.decodeToken(response.data.token);
+                if (decoded) {
+                    this.setUserData({
+                        token: response.data.token,
+                        refreshToken: response.data.refreshToken ?? '',
+                        usuarioId: Number(decoded.unique_name),
+                        nombreUsuario: decoded.family_name,
+                        expiration: new Date(decoded.exp * 1000),
+                        rol: decoded.role,
+                    });
+                }
             }),
         );
     }

@@ -43,6 +43,9 @@
                                 loginForm.get('correo')?.touched &&
                                 loginForm.get('correo')?.invalid
                         }"
+                        autocomplete="off"
+                        maxlength="100"
+                        aria-describedby="email1-help"
                     />
                     <div
                         *ngIf="
@@ -78,6 +81,7 @@
                         styleClass="mb-2"
                         [fluid]="true"
                         [feedback]="false"
+                        [maxlength]="100"
                         [ngClass]="{
                             'ng-invalid ng-dirty':
                                 loginForm.get('contrasena')?.touched &&

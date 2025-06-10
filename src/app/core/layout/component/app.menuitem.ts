@@ -14,6 +14,11 @@ import { RippleModule } from 'primeng/ripple';
 import { MenuItem } from 'primeng/api';
 import { LayoutService } from '../service/layout.service';
 
+export interface IMenuItem extends MenuItem {
+    badgeClass?: string;
+    allowedRoles?: string[];
+}
+
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: '[app-menuitem]',
@@ -120,8 +125,8 @@ import { LayoutService } from '../service/layout.service';
     ],
     providers: [LayoutService],
 })
-export class AppMenuitem {
-    @Input() item!: MenuItem;
+export class AppMenuItem {
+    @Input() item!: IMenuItem;
 
     @Input() index!: number;
 
