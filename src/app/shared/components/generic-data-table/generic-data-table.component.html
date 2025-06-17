@@ -1,6 +1,6 @@
 <bsc-table-toolbar
     [title]="config.title || 'Lista'"
-    (export)="exportCSV()"
+    (export)="export.emit('export')"
     (add)="create.emit('add')"
 />
 

@@ -23,5 +23,16 @@ export default [
         loadChildren: () => import('./pedidos/pedidos.routes'),
         canActivate: [roleGuard([RolesEnum.ADMINISTRADOR, RolesEnum.VENDEDOR])],
     },
+    {
+        path: 'reportes',
+        loadChildren: () => import('./reports/reports.routes'),
+        canActivate: [
+            roleGuard([
+                RolesEnum.ADMINISTRADOR,
+                RolesEnum.PERSONAL_ADMINISTRATIVO,
+            ]),
+        ],
+    },
+
     { path: '**', redirectTo: '/notfound' },
 ] as Routes;

@@ -1,0 +1,10 @@
+<div class="p-4 space-y-4">
+    <h2 class="text-xl font-semibold">🧾 Existencia de Inventario</h2>
+
+    <bsc-generic-data-table
+        [data]="data()"
+        [config]="tableConfig"
+        (refresh)="loadData()"
+        (export)="loadData(true)"
+    />
+</div>

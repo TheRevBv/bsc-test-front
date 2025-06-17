@@ -99,6 +99,25 @@ export class AppMenu {
                         },
                     ],
                 },
+                {
+                    label: 'Reportes',
+                    icon: 'pi pi-fw pi-chart-bar',
+                    allowedRoles: [
+                        RolesEnum.ADMINISTRADOR,
+                        RolesEnum.PERSONAL_ADMINISTRATIVO,
+                    ],
+                    items: [
+                        {
+                            label: 'Existencia de Inventario',
+                            icon: 'pi pi-fw pi-box',
+                            routerLink: ['/modules/reportes/existencias'],
+                            allowedRoles: [
+                                RolesEnum.ADMINISTRADOR,
+                                RolesEnum.PERSONAL_ADMINISTRATIVO,
+                            ],
+                        },
+                    ],
+                },
             ],
         },
     ];

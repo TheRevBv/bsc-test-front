@@ -44,6 +44,7 @@ export class GenericDataTableComponent {
     }>();
 
     @Output() create = new EventEmitter<string>();
+    @Output() export = new EventEmitter<string>();
 
     @ViewChild('dt') dt!: Table;
 

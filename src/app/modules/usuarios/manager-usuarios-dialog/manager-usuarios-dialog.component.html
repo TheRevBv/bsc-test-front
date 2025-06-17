@@ -22,18 +22,18 @@
         </div>
     </ng-container>
 
-    <div class="field">
-        <label>Imagen (opcional)</label>
-        <input pInputText formControlName="imagen" />
-    </div>
-
-    <div class="field">
+    <div class="">
         <bsc-field-select
             url="roles/select"
             formControlName="rolId"
             label="Rol"
             [required]="true"
         />
+    </div>
+
+    <div class="field">
+        <label>Imagen (opcional)</label>
+        <input pInputText formControlName="imagen" />
     </div>
 
     <div class="flex justify-end gap-3 pt-4">
